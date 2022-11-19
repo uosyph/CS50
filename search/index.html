@@ -6,25 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS500gle</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
-    <div class="header">
-        <ul class="nav">
-            <li class="nav-item"><a href="image.html">Images</a></li>
-            <li class="nav-item"><a href="advanced.html">Advanced Search</a></li>
-        </ul>
-    </div>
-
-    <div class="search">
-        <div class="logo">
+    <header class="header">
+        <div id="nav">
+                <a href="image.html">Images</a>
+                <a href="advanced.html">Advanced Search</a>
+        </div>
+    </header>
+    
+    <div id="mainSection">
+        <div id="image">
             <img src="cs50gle_logo.png" alt="CS500gle" width="300">
         </div>
+  
         <form action="https://google.com/search">
-            <input type="text" name="q" class="search-bar">
-            <div class="search-btn">
-                <input type="submit" value="Google Search">
-                <input type="submit" value="I'm Feeling Lucky">
+            <div id="inputField">
+                <i class="fas fa-search"></i>
+                <input type="text" name="q"/>
+            </div>
+  
+            <div id="button">
+                <input type="submit" value="Google Search" name="btnK"/>
+                <input type="submit" value="I'm Feeling Lucky" name="btnI"/>
             </div>
         </form>
     </div>
