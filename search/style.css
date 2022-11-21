@@ -1,3 +1,5 @@
+/* Index and Images Pages Style */
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic);
 
 * {
@@ -28,7 +30,7 @@ body {
 
 .header #nav a {
 	margin-left: 30px;
-	font-size: 12px;
+	font-size: 14px;
 	color: rgba(255, 255, 255, 0.87);
 	text-decoration: none;
 }
@@ -130,112 +132,3 @@ body {
 	border: 1px solid #5f6368;
 }
 
-/* adv */
-.advancedHeader {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px;
-	font-size: small;
-}
-
-.googleImageLittle {
-	width: auto;
-	display: flex;
-	align-items: center;
-}
-
-.googleImageLittle img {
-	width: 70px;
-	height: auto;
-}
-
-.advancedSubHeader {
-	border-bottom: 1px solid #ebebeb;
-}
-
-.advancedSubHeader h3 {
-	color: #d93025;
-	font-size: 20px;
-	margin-bottom: 20px;
-	margin-left: 35px;
-	margin-top: 15px;
-	font-weight: normal;
-}
-
-.inputOne .textDesHeading {
-	font-size: 16px;
-	min-width: 167px;
-	width: 16%;
-	font-weight: 500;
-	color: #333;
-}
-
-.inputOne .ToDoHeading {
-	color: #777;
-	font-weight: bold;
-	font-size: 13px;
-}
-
-.inputOne {
-	display: flex;
-	align-items: center;
-	max-width: 1140px;
-	min-width: 200px;
-	width: 96%;
-	margin: 40px 2% 0 45px;
-}
-
-.inputOne .textDes {
-	width: 200px;
-	font-size: 13px;
-}
-
-.inputOne .input-field {
-	min-width: 167px;
-	width: 50%;
-}
-
-.inputOne .input-field input {
-	border-radius: 1px;
-	border: 1px solid #d9d9d9;
-	border-top: 1px solid #c0c0c0;
-	font-size: 13px;
-	height: 25px;
-	padding: 1px 8px;
-	width: 100%;
-}
-
-.inputOne .toDo {
-	width: 32%;
-	min-width: 160px;
-	color: #555;
-	font-size: 11px;
-	padding-left: 30px;
-}
-
-span {
-	color: #666;
-	font-family: monospace;
-	font-size: 11px;
-	white-space: pre;
-}
-
-.inputOne .search-btn {
-	width: 50%;
-	display: flex;
-	justify-content: flex-end;
-}
-
-.search-btn input {
-	background-color: #4d90fe;
-	background-image: -webkit-linear-gradient(top, #4d90fe, #4787ed);
-	color: white;
-	height: 30px;
-	min-width: 120px;
-	border: 1px solid #3079ed;
-	color: #fff;
-	border-radius: 2px;
-	font-size: 11px;
-	font-weight: bold;
-}

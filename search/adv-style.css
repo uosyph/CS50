@@ -1,0 +1,146 @@
+/* Advanced Page Style */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic);
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow-x: hidden;
+	background: #202124;
+	height: 100vh;
+	width: 100%;
+	font-family: "Open Sans", sans-serif;
+}
+
+.advHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+}
+
+.advHeader a {
+	font-size: 14px;
+	color: rgba(255, 255, 255, 0.87);
+	text-decoration: none;
+}
+
+.advHeader a:hover {
+	text-decoration: underline;
+}
+
+.lilLogo {
+	width: auto;
+	display: flex;
+	align-items: center;
+}
+
+.lilLogo img {
+	width: 70px;
+	height: auto;
+}
+
+.advSubHeader {
+	border-bottom: 1px solid #ebebeb3b;
+}
+
+.advSubHeader h3 {
+	font-family: Helvetica, sans-serif;
+	color: #d17871;
+	font-size: 20px;
+	margin-bottom: 20px;
+	margin-left: 35px;
+	margin-top: 15px;
+	font-weight: 400;
+}
+
+.input .textHeading {
+	font-size: 16px;
+	min-width: 167px;
+	width: 18%;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.input .todoHeading {
+	color: rgba(255, 255, 255, 0.842);
+	font-weight: bold;
+	font-size: 13px;
+	padding-left: 23px;
+}
+
+.input {
+	display: flex;
+	align-items: center;
+	max-width: 1140px;
+	min-width: 200px;
+	width: 96%;
+	margin: 40px 2% 0 45px;
+}
+
+.input .input-text {
+	width: 200px;
+	font-size: 13px;
+	color: rgba(255, 255, 255, 0.69);
+}
+
+.input .input-field {
+	min-width: 167px;
+	width: 40%;
+}
+
+.input .input-field input {
+	border-radius: 1px;
+	background-color: transparent;
+	border: 1px solid #d9d9d963;
+	font-size: 13px;
+	height: 23px;
+	padding: 1px 8px;
+	width: 100%;
+	color: #fff;
+}
+
+.input .todo {
+	width: 32%;
+	min-width: 160px;
+	color: rgb(148, 148, 148);
+	font-size: 11px;
+	padding-left: 30px;
+}
+
+span {
+	color: rgba(255, 255, 255, 0.75);
+	font-family: monospace;
+	font-size: 11px;
+	white-space: pre;
+}
+
+.input .adv-search-btn {
+	width: 475px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.adv-search-btn input {
+	background-color: #8ab4f8;
+	height: 30px;
+	min-width: 120px;
+	border: 1px solid #ffffff10;
+	color: #000;
+	border-radius: 2px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.adv-search-btn input:hover {
+	background-color: #a8c4f1;
+	border: 1px solid #3078edd2;
+}
+
+.adv-search-btn input:active {
+	background-color: #3078edd2;
+	border: 1px solid #3078ed;
+}
