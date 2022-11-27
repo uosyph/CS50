@@ -3,7 +3,7 @@
 {% block body %}
 <h2>Create New Listings</h2>
 
-<form action="{%url 'create'%}" method="POST" class="create-form">
+<form action="{%url 'create'%}" method="POST" class="create-form my-4">
     {%csrf_token%}
     <div class="form-group">
         <label for="title">Title:</label>
@@ -22,7 +22,7 @@
 
     <div class="form-group">
         <label for="price">Price:</label>
-        <input type="number" name="price" id="price" class="form-control">
+        <input type="number" min="0" name="price" id="price" class="form-control">
     </div>
 
     <div class="form-group">
@@ -36,6 +36,6 @@
         </select>
 
     </div>
-    <button type="submit" class="create-btn">Create New Listing</button>
+    <button type="submit" class="btn btn-outline-success create-btn">Create New Listing</button>
 </form>
 {% endblock %}
