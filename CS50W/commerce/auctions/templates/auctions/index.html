@@ -1,19 +1,22 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-<h2>Active Listings</h2>
+<div class="header">
+    <h2 class="active">Active Listings :</h2>
 
-<form action="{%url 'category'%}" method="POST" class="my-4">
-    {%csrf_token%}
-
-    <label for="category">Category:</label>
-    <select name="category" id="category">
-        {%for cat in cats%}
-        <option value="{{cat}}">{{cat}}</option>
-        {%endfor%}
-    </select>
-    <button type="submit" class="btn btn-outline-primary">Filter</button>
-</form>
+    <form action="{%url 'category'%}" method="POST" class="category-from">
+        {%csrf_token%}
+        <div class="category-drop">
+            <select name="category" class="chose-cat">
+                <option value="" disabled selected>Category</option>
+                {%for cat in cats%}
+                <option value="{{cat}}">{{cat}}</option>
+                {%endfor%}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-outline-primary fltr-btn">Filter</button>
+    </form>
+</div>
 
 <div class="row mx-4">
     {%for listing in listings%}
