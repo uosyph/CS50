@@ -194,15 +194,12 @@ li {
     margin-bottom: -27px;
 }
 
-
-
-
 /* INDEX PAGE */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin-top: 15px;
 }
 
 .active {
@@ -212,17 +209,119 @@ li {
 }
 
 .chose-cat {
-    flex-wrap: nowrap;
+    padding: 5px !important;
+    margin-right: 10px;
+    margin-top: 1px;
 }
 
 .fltr-btn {
-    flex: end;
+    padding-block: 3px;
+    margin-bottom: 2.6px;
 }
 
 .category-from {
     margin-right: 55px;
-    position: relative;
-    /* display: block; */
 }
 
-/*  */
+
+/* CARDS */
+.prods {
+    margin-bottom: 80px;
+}
+
+.card-row {
+    margin-top: 50px;
+    margin-inline: 100px;
+}
+
+.prod-card {
+    width: 100%;
+}
+
+.prod-card .wrapper {
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+.prod-card .data {
+    float: right;
+    width: 80%;
+    height: 100%;
+}
+
+.prod-card .data .content {
+    padding: 1.5em;
+    position: relative;
+    z-index: 1;
+}
+
+.prod-card .author {
+    color: aquamarine;
+    font-size: 12px;
+}
+
+.prod-card .title {
+    font-size: 26px;
+    margin-top: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+.prod-card .title a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.prod-card .title a:hover {
+    color: #788a83;
+    transition: 0.3s ease;
+}
+
+.prod-card .desc {
+    height: 70px;
+    margin-top: 7px !important;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.image {
+    float: left;
+    max-width: 20%;
+    overflow: hidden;
+}
+
+.prod-image {
+    width: 100%;
+    display: block;
+    height: 80%;
+
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.prod-card .price-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #606865;
+    color: #fff;
+    padding: 0.8em;
+    border-bottom-right-radius: 10px;
+}
+
+.prod-card .price-wrapper span {
+    text-align: center;
+}
+
+.prod-card .price-wrapper .price {
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.18);
+}
+
