@@ -4,13 +4,13 @@
 {%if message%}
 <div class="container">
     {%if updated%}
-        <div class="alert alert-success" role="alert">
-            {{message}}
-        </div>
+    <div class="alert alert-success" role="alert">
+        {{message}}
+    </div>
     {%else%}
-        <div class="alert alert-danger" role="alert">
-            {{message}}
-        </div>
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
     {%endif%}
 </div>
 {%endif%}
@@ -23,74 +23,100 @@
 </div>
 {%endif%}
 
-<h2>{{listing.title}}</h2>
-<p>{{listing.desc}}</p>
-<img src="{{listing.img}}" alt="{{listing.title}}" width="450px">
-<h5>{{listing.owner}}</h5>
-<h4><sup>$</sup>{{listing.price.bid}}</h4>
+<div class="container-fluid">
+    <div class="cart">
+        <div class="row cart-row">
 
-<div class="row">
-    {%if user.is_authenticated and listing.isActive%}
-        {%if isOwner%}
-            <form action="{%url 'endAuction' id=listing.id%}" method="POST" class="mx-3">
-                {%csrf_token%}
-                <button type="submit" class="btn btn-outline-warning">End Auction</button>
-            </form>            
-        {%endif%}
-        {%if isInWatchlist%}
-            <form action="{%url 'removeFromWatchlist' id=listing.id%}" method="POST" class="mx-3">
-                {%csrf_token%}
-                <button type="submit" class="btn btn-outline-warning">Remove from Watchlist</button>
-            </form>
-        {%else%}
-            <form action="{%url 'addToWatchlist' id=listing.id%}" method="POST" class="mx-3">
-                {%csrf_token%}
-                <button type="submit" class="btn btn-outline-success">Add to Watchlist</button>
-            </form>
-        {%endif%}
-    {%endif%}
-</div>
+            <div class="col-md-4">
+                <img src="{{listing.img}}" alt="{{listing.title}}" width="450px" id="product-img">
+            </div>
 
-{%if user.is_authenticated%}
-<br>
-<form action="{%url 'addBid' id=listing.id%}" method="POST">
-    {%csrf_token%}
-    <div class="form-group">
-        <label for="newBid">Add a Bid</label>
-        <input type="number" min="0" name="newBid">
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Add</button>
-    </div>
-</form>
-{%endif%}
+            <div class="col-md-6">
+                <h2 id="product-title">{{listing.title}}</h2>
 
-<div class="comments">
-    <br>
-    <h4>Comments</h4>
-    <br>
-    {%if user.is_authenticated%}
-    <form action="{%url 'addComment' id=listing.id%}" method="POST">
-        {%csrf_token%}
-        <div class="form-group">
-            <label for="newComment">Add a Comment</label>
-            <input type="text" name="newComment">
+                <div id="prod-price">
+                    <span><sup>$</sup>{{listing.price.bid}}</span>
+                </div>
+                <p id="prod-desc">{{listing.desc}}</p>
+
+                <div class="details">
+                    Details
+                    <ul>
+                        <li>Listed By: <span>{{listing.owner}}</span></li>
+                        <li>Category: <span>{{listing.category}}</span></li>
+                    </ul>
+                </div>
+
+                <div class="prod-buttons">
+                    <div class="row">
+                        {%if user.is_authenticated and listing.isActive%}
+                        {%if isOwner%}
+                        <form action="{%url 'endAuction' id=listing.id%}" method="POST" class="mx-3">
+                            {%csrf_token%}
+                            <button type="submit" class="btn btn-outline-warning" id="end-act">End Auction</button>
+                        </form>
+                        {%endif%}
+                        {%if isInWatchlist%}
+                        <form action="{%url 'removeFromWatchlist' id=listing.id%}" method="POST" class="mx-3">
+                            {%csrf_token%}
+                            <button type="submit" class="btn btn-outline-warning" id="rm-wl">Remove from
+                                Watchlist</button>
+                        </form>
+                        {%else%}
+                        <form action="{%url 'addToWatchlist' id=listing.id%}" method="POST" class="mx-3">
+                            {%csrf_token%}
+                            <button type="submit" class="btn btn-outline-success" id="add-wl">Add to Watchlist</button>
+                        </form>
+                        {%endif%}
+                        {%endif%}
+                    </div>
+
+                    {%if user.is_authenticated%}
+                    <br>
+                    <div class="addbib">
+                        <form action="{%url 'addBid' id=listing.id%}" method="POST">
+                            {%csrf_token%}
+                            <div class="form-group">
+                                <label for="newBid">Add a Bid</label>
+                                <input type="number" min="0" name="newBid">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" id="add-bid">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-success">Add</button>
+
+        <div class="comments">
+            <br>
+            <h4>Comments</h4>
+            <br>
+            {%if user.is_authenticated%}
+            <form action="{%url 'addComment' id=listing.id%}" method="POST">
+                {%csrf_token%}
+                <div class="form-group">
+                    <label for="newComment">Add a Comment</label>
+                    <input type="text" name="newComment">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" id="add-cmt">Add</button>
+                </div>
+            </form>
+            {%endif%}
+            <br>
+            <ul class="list-group">
+                {%for comment in comments%}
+                <li class="list-group-item">
+                    <p><b>Author:</b> {{comment.author}}</p>
+                    <p><b>Comment:</b> {{comment.comment}}</p>
+                    <br>
+                </li>
+                {%endfor%}
+            </ul>
         </div>
-    </form>
-    {%endif%}
-    <br>
-    
-    <ul class="list-group">
-        {%for comment in comments%}
-            <li class="list-group-item">
-                <p><b>Author:</b> {{comment.author}}</p>
-                <p><b>Comment:</b> {{comment.comment}}</p>
-                <br>
-            </li>
-        {%endfor%}
-    </ul>
+    </div>
 </div>
 {% endblock %}
