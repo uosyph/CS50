@@ -224,7 +224,6 @@ a {
     margin-right: 55px;
 }
 
-
 /* CARDS */
 .prods {
     margin-bottom: 80px;
@@ -297,10 +296,11 @@ a {
 }
 
 .prod-image {
-    width: 100%;
     display: block;
-    height: 80%;
-
+    max-width: 100%;
+    max-height: 20%;
+    aspect-ratio: 6/4;
+    object-fit: contain;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -340,6 +340,7 @@ a {
     display: grid;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .cart {
@@ -348,6 +349,7 @@ a {
     padding: 50px;
     border-radius: 20px;
     margin: 30px 40px;
+    padding-bottom: 20px;
 }
 
 .cart-row {
@@ -366,7 +368,7 @@ a {
 }
 
 #product-img {
-    margin-top: -180px;
+    margin-top: -130px;
 }
 
 #prod-price {
@@ -375,7 +377,7 @@ a {
 }
 
 #prod-price span {
-    color: #85a0a1;
+    color: #81b3b4;
     font-size: 22px;
     font-weight: 600;
     margin-right: 10px;
@@ -389,40 +391,152 @@ a {
 }
 
 .details {
-    margin-bottom: 37px;
+    margin-top: 20px;
+    margin-bottom: 32px;
+}
+
+.details ul li {
+    list-style: none;
+    color: rgba(238, 238, 238, 0.637);
+    font-size: 15.5px;
+    letter-spacing: .3px;
 }
 
 .details ul li span {
-    color: #638585;
+    color: #7ba3a3;
+    font-weight: 450;
+    font-style: italic;
+    margin-left: 2px;
 }
 
-#end-act {
-
+.prod-buttons .row {
+    margin-bottom: 20px;
 }
-
-#add-wl {
-
-}
-
-#rm-wl {
-    
-}
-
-#add-bid {
-
-}
-
-#add-cmt {
-
-}
-
-.comments {
-
-}
-
 
 .prod-buttons .row .col-md-6 {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#end-act {
+    color: #fff;
+    border-color: #a85b5b;
+    transition: 0.3s ease;
+}
+
+#end-act:hover {
+    background-color: #a85b5b;
+    transition: 0.3s ease;
+}
+
+#add-wl {
+    color: #fff;
+    border-color: #a4c468;
+    transition: 0.3s ease;
+}
+
+#add-wl:hover {
+    background-color: #a4c468;
+    transition: 0.3s ease;
+}
+
+#rm-wl {
+    color: #fff;
+    border-color: #ecce6c;
+    transition: 0.3s ease;
+}
+
+#rm-wl:hover {
+    background-color: #ecce6c;
+    transition: 0.3s ease;
+}
+
+#add-bid {
+    color: #fff;
+    border-color: #386e9b;
+    transition: 0.3s ease;
+}
+
+#add-bid:hover {
+    background-color: #386e9b;
+    transition: 0.3s ease;
+}
+
+#add-cmt {
+    color: #fff;
+    border-color: #638585;
+    transition: 0.3s ease;
+}
+
+#add-cmt:hover {
+    background-color: #638585;
+    transition: 0.3s ease;
+}
+
+.addbid form div input {
+    width: 233px;
+    height: 36px;
+    color: #638585;
+    font-weight: 500;
+    border-radius: 5px;
+    background-color: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    margin-right: 15px;
+    outline: none;
+}
+
+.comments {
+    margin-top: 85px;
+}
+
+.comments span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 30px;
+}
+
+.comments form {
+    margin-top: 25px;
+}
+
+.comments form div label {
+    color: #638585;
+    margin-bottom: 20px;
+}
+
+.comments form div textarea {
+    width: 1000px;
+    height: 150px;
+    color: #649b9b;
+    font-weight: 500;
+    border-radius: 5px;
+    background-color: transparent;
+    border-top: rgba(255, 255, 255, 0.6) solid 2px;
+    border-bottom: rgba(255, 255, 255, 0.6) solid 2px;
+    border-left: transparent;
+    border-right: transparent;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.comments ul li {
+    background-color: transparent;
+    border: transparent;
+    padding: 0;
+}
+
+.comments ul li p b {
+    font-weight: 500;
+    color: #638585ce;
+}
+
+.comments ul li p {
+    word-break: break-all;
+    color: #ffffffc2;
+}
+
+.comments ul li p:first-child {
+    font-weight: 600;
 }

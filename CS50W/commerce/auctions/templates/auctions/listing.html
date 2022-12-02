@@ -40,7 +40,6 @@
                 <p id="prod-desc">{{listing.desc}}</p>
 
                 <div class="details">
-                    Details
                     <ul>
                         <li>Listed By: <span>{{listing.owner}}</span></li>
                         <li>Category: <span>{{listing.category}}</span></li>
@@ -50,22 +49,22 @@
                 <div class="prod-buttons">
                     <div class="row">
                         {%if user.is_authenticated and listing.isActive%}
-                        {%if isOwner%}
-                        <form action="{%url 'endAuction' id=listing.id%}" method="POST" class="mx-3">
-                            {%csrf_token%}
-                            <button type="submit" class="btn btn-outline-warning" id="end-act">End Auction</button>
-                        </form>
-                        {%endif%}
                         {%if isInWatchlist%}
                         <form action="{%url 'removeFromWatchlist' id=listing.id%}" method="POST" class="mx-3">
                             {%csrf_token%}
-                            <button type="submit" class="btn btn-outline-warning" id="rm-wl">Remove from
+                            <button type="submit" class="btn" id="rm-wl">Remove from
                                 Watchlist</button>
                         </form>
                         {%else%}
                         <form action="{%url 'addToWatchlist' id=listing.id%}" method="POST" class="mx-3">
                             {%csrf_token%}
-                            <button type="submit" class="btn btn-outline-success" id="add-wl">Add to Watchlist</button>
+                            <button type="submit" class="btn" id="add-wl">Add to Watchlist</button>
+                        </form>
+                        {%endif%}
+                        {%if isOwner%}
+                        <form action="{%url 'endAuction' id=listing.id%}" method="POST" class="mx-3">
+                            {%csrf_token%}
+                            <button type="submit" class="btn" id="end-act">End Auction</button>
                         </form>
                         {%endif%}
                         {%endif%}
@@ -73,15 +72,12 @@
 
                     {%if user.is_authenticated%}
                     <br>
-                    <div class="addbib">
+                    <div class="addbid">
                         <form action="{%url 'addBid' id=listing.id%}" method="POST">
                             {%csrf_token%}
                             <div class="form-group">
-                                <label for="newBid">Add a Bid</label>
-                                <input type="number" min="0" name="newBid">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary" id="add-bid">Add</button>
+                                <input type="number" min="0" name="newBid" placeholder="Add a Bid">
+                                <button type="submit" class="btn" id="add-bid">Add</button>
                             </div>
                         </form>
                     </div>
@@ -91,18 +87,16 @@
         </div>
 
         <div class="comments">
-            <br>
-            <h4>Comments</h4>
-            <br>
+            <span>Comments</span>
             {%if user.is_authenticated%}
             <form action="{%url 'addComment' id=listing.id%}" method="POST">
                 {%csrf_token%}
                 <div class="form-group">
-                    <label for="newComment">Add a Comment</label>
-                    <input type="text" name="newComment">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success" id="add-cmt">Add</button>
+                    <label for="newComment">Post a Comment :</label>
+                    <br>
+                    <textarea name="newComment"></textarea>
+                    <br>
+                    <button type="submit" class="btn" id="add-cmt">Post</button>
                 </div>
             </form>
             {%endif%}
