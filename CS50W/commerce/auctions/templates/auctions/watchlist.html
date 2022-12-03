@@ -38,4 +38,7 @@
     </div>
     {%endfor%}
 </div>
+{%if not listings%}
+    <div id="mt-list">Your watchlist is currently empty.</div>
+{%endif%}
 {% endblock %}

@@ -4,11 +4,11 @@
 {%if message%}
 <div class="container">
     {%if updated%}
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert" id="succ-alert">
         {{message}}
     </div>
     {%else%}
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert" id="fail-alert">
         {{message}}
     </div>
     {%endif%}
@@ -17,8 +17,8 @@
 
 {%if not listing.isActive and user == listing.price.user%}
 <div class="container">
-    <div class="alert alert-success" role="alert">
-        Congrats! You Won The Auction.
+    <div class="alert alert-success" role="alert" id="won-alert">
+        Congratulations! You won the auction.
     </div>
 </div>
 {%endif%}
@@ -28,7 +28,7 @@
         <div class="row cart-row">
 
             <div class="col-md-4">
-                <img src="{{listing.img}}" alt="{{listing.title}}" width="450px" id="product-img">
+                <img src="{{listing.img}}" alt="{{listing.title}}" id="product-img">
             </div>
 
             <div class="col-md-6">
@@ -48,20 +48,23 @@
 
                 <div class="prod-buttons">
                     <div class="row">
-                        {%if user.is_authenticated and listing.isActive%}
+                        {%if user.is_authenticated%}
                         {%if isInWatchlist%}
                         <form action="{%url 'removeFromWatchlist' id=listing.id%}" method="POST" class="mx-3">
                             {%csrf_token%}
-                            <button type="submit" class="btn" id="rm-wl">Remove from
-                                Watchlist</button>
+                            <button type="submit" class="btn" id="rm-wl">
+                                Remove from Watchlist
+                            </button>
                         </form>
                         {%else%}
+                        {%if listing.isActive%}
                         <form action="{%url 'addToWatchlist' id=listing.id%}" method="POST" class="mx-3">
                             {%csrf_token%}
                             <button type="submit" class="btn" id="add-wl">Add to Watchlist</button>
                         </form>
                         {%endif%}
-                        {%if isOwner%}
+                        {%endif%}
+                        {%if isOwner and listing.isActive%}
                         <form action="{%url 'endAuction' id=listing.id%}" method="POST" class="mx-3">
                             {%csrf_token%}
                             <button type="submit" class="btn" id="end-act">End Auction</button>

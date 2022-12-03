@@ -134,14 +134,14 @@ def addBid(request, id):
     isInWatchlist = request.user in listingData.watchlist.all()
     comments = Comment.objects.filter(listing=listingData)
     isOwner = request.user.username == listingData.owner.username
-    if float(newBid) > listingData.price.bid:
+    if float(newBid) > listingData.price.bid and listingData.isActive == True:
         updatedBid = Bid(user=request.user, bid=float(newBid))
         updatedBid.save()
         listingData.price = updatedBid
         listingData.save()
         return render(request, "auctions/listing.html", {
             "listing": listingData,
-            "message": "Bid Updated Successfully",
+            "message": "Bid Updated Successfully.",
             "updated": True,
             "isInWatchlist": isInWatchlist,
             "comments": comments,
@@ -150,7 +150,7 @@ def addBid(request, id):
     else:
         return render(request, "auctions/listing.html", {
             "listing": listingData,
-            "message": "Bid Did not Update",
+            "message": "Bid Did not Update.",
             "updated": False,
             "isInWatchlist": isInWatchlist,
             "comments": comments,
@@ -171,7 +171,7 @@ def endAuction(request, id):
         "comments": comments,
         "isOwner": isOwner,
         "updated": True,
-        "message": "The Acution is Closed"
+        "message": "The Acution is Closed."
     })
 
 
