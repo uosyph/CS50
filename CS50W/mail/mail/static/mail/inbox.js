@@ -69,7 +69,7 @@ function view_email(id) {
 						archived: !email.archived
 					})
 				})
-					.then(() => { load_mailbox('archive'); });
+					.then(() => { load_mailbox('inbox'); });
 			});
 			document.querySelector('#email-detail-view').append(archivedBtn);
 
@@ -89,7 +89,7 @@ function view_email(id) {
 				}
 				document.querySelector('#compose-subject').value = subject;
 
-				let body = `On ${email['timestamp']}, ${email['sender']} wrote: ${email['body']}`;
+				let body = `On ${email['timestamp']}. ${email['sender']} wrote:\n${email['body']}`;
 				document.querySelector('#compose-body').value = body;
 			});
 			document.querySelector('#email-detail-view').append(replyBtn);
@@ -116,7 +116,7 @@ function load_mailbox(mailbox) {
 				newEmail.innerHTML = `
 					<p id="from">${Email.sender}</p>
 					<p id="time">${Email.timestamp}</p>
-					<p id="sub">Subject: ${Email.subject}</p>
+					<p id="sub">${Email.subject}</p>
 				`;
 
 				newEmail.className = Email.read ? 'read' : 'unread';
