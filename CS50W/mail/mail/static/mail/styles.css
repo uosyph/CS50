@@ -1,11 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
+
+body {
+    font-family: 'Lato';
+}
+
+h2 {
+    margin: 20px auto 17px auto;
+}
+
+ul {
+    margin-top: 20px;
+    padding-left: 0;
+}
+
 textarea {
     min-height: 400px;
 }
 
 .read {
-    background-color: grey;
+    background-color: #cecece;
 }
 
 .unread {
-    background-color: white;
+    background-color: #fff;
+}
+
+.btn {
+    margin-right: 3px;
+}
+
+#mail-box {
+    text-align: left;
+    width: 100%;
+    padding: 15px 15px 1px 15px;
+    margin-top: 8px;
+    border: 1px solid #a4a4a4;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#from {
+    font-size: 16px;
+    float: left;
+    margin-right: 80px;
+}
+
+#time {
+    font-size: 14px;
+    float: right;
+    margin-left: 80px;
+}
+
+#sub {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

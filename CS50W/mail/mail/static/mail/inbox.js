@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	document.querySelector('#sent').addEventListener('click', () => load_mailbox('sent'));
 	document.querySelector('#archived').addEventListener('click', () => load_mailbox('archive'));
 	document.querySelector('#compose').addEventListener('click', compose_email);
-	document.querySelector('#compose-form').addEventListener('submit', send_mail)
+	document.querySelector('#compose-form').addEventListener('submit', send_mail);
 
 	// By default, load the inbox
 	load_mailbox('inbox');
@@ -28,19 +28,22 @@ function view_email(id) {
 	fetch(`/emails/${id}`)
 		.then(response => response.json())
 		.then(email => {
-			console.log(email);
-
 			document.querySelector('#emails-view').style.display = 'none';
 			document.querySelector('#compose-view').style.display = 'none';
 			document.querySelector('#email-detail-view').style.display = 'block';
 
 			document.querySelector('#email-detail-view').innerHTML = `
-				<ul>
-					<li class="list-group-item"><b>From:</b> ${email.sender}</li>
-					<li class="list-group-item"><b>To:</b> ${email.recipients}</li>
-					<li class="list-group-item"><b>Subject:</b> ${email.subject}</li>
-					<li class="list-group-item"><b>Timestamp:</b> ${email.timestamp}</li>
-					<li class="list-group-item">${email.body}</li>
+				<ul style="word-break: break-all; border-radius: 15px;">
+					<li class="list-group-item">
+						<b style="font-size: 24px">${email.subject}</b><br>
+
+						<div style="font-size: 16px; float: left; margin-right: 80px;"><b>From: </b>${email.sender}</div><br>
+						
+						<div style="font-size: 14px; float: right; margin-left: 80px;">${email.timestamp}</div>
+						
+						<div><b>To: </b>${email.recipients}<br></div>
+					</li>
+					<li class="list-group-item" style="font-size: 18px">${email.body}</li>
 				</ul>
 			`;
 
@@ -50,18 +53,47 @@ function view_email(id) {
 					body: JSON.stringify({
 						read: true
 					})
-				})
+				});
 			}
 
-
 			const archivedBtn = document.createElement('button');
-			archivedBtn.innerHTML = email.archived ? "Unarchived" : "Archived";
-			archivedBtn.className = email.archived ? "btn btn-success" : "btn btn-danger";
+			archivedBtn.innerHTML = email.archived ? "Unarchive" : "Archive";
+			archivedBtn.className = email.archived ? "btn btn-success" : "btn btn-warning";
+			archivedBtn.style.marginRight = '15px';
+			archivedBtn.style.fontSize = '15px';
 
 			archivedBtn.addEventListener('click', function () {
-				console.log('This element has been clicked!')
+				fetch(`/emails/${email.id}`, {
+					method: 'PUT',
+					body: JSON.stringify({
+						archived: !email.archived
+					})
+				})
+					.then(() => { load_mailbox('archive'); });
 			});
 			document.querySelector('#email-detail-view').append(archivedBtn);
+
+			const replyBtn = document.createElement('button');
+			replyBtn.innerHTML = "Reply";
+			replyBtn.className = "btn btn-info";
+			replyBtn.style.fontSize = '15px';
+
+			replyBtn.addEventListener('click', function () {
+				compose_email();
+
+				document.querySelector('#compose-recipients').value = email['sender'];
+
+				let subject = email['subject'];
+				if (subject.split(" ", 1)[0] != "Re:") {
+					subject = "Re: " + subject;
+				}
+				document.querySelector('#compose-subject').value = subject;
+
+				let body = `On ${email['timestamp']}, ${email['sender']} wrote: ${email['body']}`;
+				document.querySelector('#compose-body').value = body;
+			});
+			document.querySelector('#email-detail-view').append(replyBtn);
+			document.querySelector('#email-detail-view').style.marginBottom = '25px';
 		});
 }
 
@@ -80,22 +112,21 @@ function load_mailbox(mailbox) {
 		.then(email => {
 			email.forEach(Email => {
 				const newEmail = document.createElement('div');
-				newEmail.className = 'list-group-item	'
+				newEmail.id = 'mail-box';
 				newEmail.innerHTML = `
-					<h6>Sender: ${Email.sender}</h6>
-					<h5>Subject: ${Email.subject}</h5>
-					<p>${Email.timestamp}</p>
+					<p id="from">${Email.sender}</p>
+					<p id="time">${Email.timestamp}</p>
+					<p id="sub">Subject: ${Email.subject}</p>
 				`;
 
 				newEmail.className = Email.read ? 'read' : 'unread';
 
 				newEmail.addEventListener('click', function () {
-					view_email(Email.id)
+					view_email(Email.id);
 				});
 				document.querySelector('#emails-view').append(newEmail);
 			});
 		});
-
 }
 
 function send_mail(event) {
@@ -115,8 +146,6 @@ function send_mail(event) {
 	})
 		.then(response => response.json())
 		.then(result => {
-			console.log(result);
-			load_mailbox('sent')
+			load_mailbox('sent');
 		});
-
 }
