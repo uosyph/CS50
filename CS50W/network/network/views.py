@@ -11,6 +11,12 @@ def index(request):
     return render(request, "network/index.html")
 
 
+def new_post(request):
+    if request.method == "POST":
+        content = request.POST('content')
+        user = User.objects.get(pk=request.user.id)
+
+
 def login_view(request):
     if request.method == "POST":
 
