@@ -1,30 +1,43 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
+<div class="container-box" id="reg-box">
+        <h2>REGISTER</h2>
 
-    <h2>Register</h2>
+        {% for message in messages %}
+        <div class="msg">{{ message }}</div>
+        <hr>
+        {% endfor %}
 
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-box">
+                <input required type="text" name="username">
+                <label for="username">Username</label>
+            </div>
 
-    <form action="{% url 'register' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+            <div class="form-box">
+                <input required type="text" name="email">
+                <label for="email">Email</label>
+            </div>
+            
+            <div class="form-box">
+                <input required type="password" name="password">
+                <label for="password">Password</label>
+            </div>
+            
+            <div class="form-box">
+                <input required type="password" name="confirmation"> 
+                <label for="confirmation">Confirm Password</label>
+            </div>
+            
+            <input class="btn" id="submit-btn" type="submit" value="Register">
+        </form>
+
+        <br>
+        <div class="reg">
+            Already have an account? <a href="{% url 'login' %}">Log In here</a>.
         </div>
-        <div class="form-group">
-            <input class="form-control" type="email" name="email" placeholder="Email Address">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Register">
-    </form>
-
-    Already have an account? <a href="{% url 'login' %}">Log In here.</a>
-
+    </div>
+</div>
 {% endblock %}
