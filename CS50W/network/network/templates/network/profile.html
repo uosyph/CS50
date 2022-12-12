@@ -1,0 +1,35 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-4 my-2 p-4 text-center" style="color: #fff;">
+            <h1 style="font-size: 44px; margin-block: 20px;">{{ profile_user }}</h1>
+            <div class="row justify-content-center mb-1" style="gap: 30px;">
+                <p><b style="color: #6ebfca;">{{ followers_count }}</b>&numsp;Followers</p>
+                <p><b style="color: #6ebfca;">{{ following_count }}</b>&numsp;Following</p>
+            </div>
+
+            {% if user.is_authenticated and profile_user != request.user %}
+            {% if not following %}
+            <form action="{% url 'follow' profile_user.id %}" method="POST">
+                {% csrf_token %}
+                <button class="btn save-button py-15 px-4">Follow</button>
+            </form>
+            {% else %}
+            <form action="{% url 'unfollow' profile_user.id %}" method="POST">
+                {% csrf_token %}
+                <button class="btn save-button py-15 px-4">Unfollow</button>
+            </form>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-7 mt-0 mt-sm-3 pt-2" id="allposts">
+            {% include "network/posts_layout.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}

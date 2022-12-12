@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const postId = editButton.dataset.id;
             const postText = document.getElementById(`post_content_${postId}`);
 
+            // Create 'Textarea' and add it to DOM
             let textArea = document.createElement('textarea');
             textArea.innerHTML = postText.innerHTML;
             textArea.id = `textarea_${postId}`;

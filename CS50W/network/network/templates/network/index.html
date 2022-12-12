@@ -5,7 +5,7 @@
     {% if user.is_authenticated %}
     <div class="row justify-content-center" id="post-box">
         <div class="col-12 col-lg-6 mt-0 mt-sm-3 px-4 box-shadow" id="newpost">
-            <h3 class="pt-4 pb-3">New post</h3>
+            <h3 class="pt-4 pb-3">New Post</h3>
             <form action="{% url 'newpost' %}" method="POST">
                 {% csrf_token %}
                 <div id="form">{{ form }}</div>
@@ -19,7 +19,7 @@
 
     <div class="row justify-content-center">
         <div class="col-12 col-lg-7 mt-3" id="allposts">
-            <h3 class="pt-4 pb-3 text-center">All posts</h3>
+            <h3 class="pt-4 pb-3 mb-3 text-center">All Posts</h3>
             {% include "network/posts_layout.html" %}
         </div>
     </div>
