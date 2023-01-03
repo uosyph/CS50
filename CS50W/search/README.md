@@ -1,6 +1,1 @@
-<h1 align="center">
-
-***CS50gle*** a Google Search Clone
-
-</h1>
-
+# ***CS50gle*** a Google Search Clone
